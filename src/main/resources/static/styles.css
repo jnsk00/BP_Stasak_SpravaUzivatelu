@@ -1,0 +1,89 @@
+/* Reset základních stylů */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Styl pro celé tělo stránky */
+body {
+    background: linear-gradient(135deg, #4A90E2, #6BBAE4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+/* Kontejner pro formuláře */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Nadpisy */
+h1, h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Styl pro vstupní pole */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Styl pro tlačítka */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+/* Zelené tlačítko pro registraci */
+.register-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Modré tlačítko pro přihlášení */
+.login-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Efekt při najetí na tlačítko */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Seznam uživatelů */
+#userList {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+/* Styl pro jednotlivé uživatele */
+#userList li {
+    background: #f1f1f1;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Správa uživatelů</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Registrace uživatele</h1>
+    <input type="text" id="username" placeholder="Uživatelské jméno">
+    <input type="password" id="password" placeholder="Heslo">
+    <button class="register-btn" onclick="registerUser()">Registrovat</button>
+</div>
+
+<div class="container">
+    <h1>Přihlášení</h1>
+    <input type="text" id="loginUsername" placeholder="Uživatelské jméno">
+    <input type="password" id="loginPassword" placeholder="Heslo">
+    <button id="loginButton" class="login-btn" onclick="loginUser()">Přihlásit</button>
+</div>
+
+<div class="container">
+    <h2>Seznam uživatelů</h2>
+    <ul id="userList"></ul>
+</div>
+
+<script src="app.js" defer></script>
+<script src="index.js" defer></script>
+
+</body>
+</html>
