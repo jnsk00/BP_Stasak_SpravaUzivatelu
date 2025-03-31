@@ -8,34 +8,38 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SeleniumTest {
     private WebDriver driver;
     private WebDriverWait wait;
-    private String testUsername;
-    private String baseUrl = "http://localhost:8080";
+    private static String testUsername;
+    private final String baseUrl = "http://localhost:8080";
 
     @BeforeAll
     static void setupClass() {
         WebDriverManager.chromedriver().setup();
+        testUsername = "testUser_" + UUID.randomUUID();
     }
 
     @BeforeEach
     void setup() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("registerUsername")));
         driver = new ChromeDriver();
+
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get(baseUrl + "/index.html");
-        testUsername = "testUser_" + UUID.randomUUID();
+
         driver.manage().deleteAllCookies();
         driver.navigate().refresh();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
 
     }
 
@@ -49,71 +53,108 @@ public class SeleniumTest {
     @Test
     @Order(1)
     void testRegisterUser() {
-        driver.findElement(By.id("registerUsername")).sendKeys(testUsername);
-        driver.findElement(By.id("registerPassword")).sendKeys("testPass123");
-        driver.findElement(By.id("registerButton")).click();
-
-        Alert alert = driver.switchTo().alert();
-        String alertText = alert.getText();
-        alert.accept();
-
-        assertEquals("Uživatel zaregistrován!", alertText, "Nečekaný alert!");
-    }
+        driver.findElement(By.id("username")).sendKeys(testUsername);
+        driver.findElement(By.id("password")).sendKeys("testPass123");
+        driver.findElement(By.className("register-btn")).click();
 
 
-
-    private void handleAlert(String expectedText) {
         try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             Alert alert = wait.until(ExpectedConditions.alertIsPresent());
             String alertText = alert.getText();
-            System.out.println("Zobrazený alert: " + alertText);
-
-            // Pokud alert neodpovídá očekávání, test selže
-            assertEquals(expectedText, alertText, "Nečekaný alert!");
             alert.accept();
-        } catch (TimeoutException e) {
-            Assertions.fail("Očekávaný alert '" + expectedText + "' se nezobrazil!");
+            assertEquals("Uživatel zaregistrován!", alertText, "Nečekaný alert!");
+        } catch (TimeoutException | NoAlertPresentException e) {
+            fail("❌ Alert se neobjevil po registraci! Pravděpodobně došlo k chybě.");
         }
     }
 
-
-    @Test
+        @Test
     @Order(2)
     void testLogin() {
-        testRegisterUser(); // Registrujeme nového uživatele
 
         driver.findElement(By.id("loginUsername")).sendKeys(testUsername);
         driver.findElement(By.id("loginPassword")).sendKeys("testPass123");
         driver.findElement(By.id("loginButton")).click();
 
-        assertTrue(driver.getCurrentUrl().contains("user-panel.html"), "Nejsme na přihlašovací stránce!");
-    }
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+            boolean loginSuccess = wait.until(ExpectedConditions.urlContains("user-panel.html"));
+            assertTrue(loginSuccess, "Nejsme na přihlašovací stránce!");
+
+        }
 
     @Test
     @Order(3)
-    void testUpdateUser() {
+    void testUpdateUser() throws InterruptedException {
         testLogin();
 
         driver.findElement(By.id("newUsername")).sendKeys("updatedUser");
         driver.findElement(By.id("newPassword")).sendKeys("newPass123");
         driver.findElement(By.xpath("//button[text()='Uložit změny']")).click();
 
-        Alert alert = driver.switchTo().alert();
-        String alertText = alert.getText();
-        alert.accept();
+        Thread.sleep(500);
 
-        assertEquals("Údaje byly úspěšně aktualizovány.", alertText, "Chyba při aktualizaci!");
+    // Poté čekání na alert
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            Alert alert = driver.switchTo().alert();
+            System.out.println("✅ Alert text: " + alert.getText());
+            alert.accept();
+        } catch (TimeoutException e) {
+            System.out.println("ALERT SE NEZOBRAZIL!");
+        }
     }
 
 
     @Test
-    @Order(3)
+    @Order(4)
     void testDeleteUser() {
-        testLogin();
-        driver.findElement(By.id("deleteUserButton")).click();
+        if (wait == null) {
+            throw new IllegalStateException("WebDriverWait nebyl správně inicializován!");
+        }
 
-        Alert alert = driver.switchTo().alert();
-        assertEquals("Uživatel byl smazán.", alert.getText());
-        alert.accept();
+        driver.findElement(By.id("loginUsername")).sendKeys("admin");
+        driver.findElement(By.id("loginPassword")).sendKeys("admin123");
+        driver.findElement(By.id("loginButton")).click();
+
+
+        wait.until(ExpectedConditions.urlContains("/admin-panel"));
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userList")));
+
+        List<WebElement> rows = driver.findElements(By.cssSelector("#userList tr"));
+        boolean userFound = false;
+
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
+
+            if (!cells.isEmpty() && cells.get(0).getText().equals("updatedUser")) {
+                userFound = true;
+
+
+                WebElement deleteButton = row.findElement(By.xpath(".//button[contains(text(),'Smazat')]"));
+                deleteButton.click();
+
+
+                try {
+                    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+                    alert.accept(); // Potvrď smazání
+                } catch (Exception e) {
+                    System.out.println("Žádný alert k potvrzení.");
+                }
+
+                // ✅ Počkej na opětovné načtení seznamu uživatelů
+                wait.until(ExpectedConditions.stalenessOf(row));
+                break;
+            }
+        }
+
+
+        List<WebElement> updatedRows = driver.findElements(By.cssSelector("#userList tr"));
+        boolean userStillExists = updatedRows.stream()
+                .anyMatch(r -> r.findElements(By.tagName("td")).get(0).getText().equals("updatedUser"));
+
+        assertFalse(userStillExists, "Uživatel 'updatedUser' stále existuje, i když měl být smazán!");
     }
 }

@@ -1,36 +1,47 @@
 package JUnit;
 
-import org.example.desktop.Classes.Admin;
-import org.example.desktop.Classes.UserManager;
+import cz.Stasak.desktop.Classes.Admin;
+import cz.Stasak.desktop.Classes.User;
+import cz.Stasak.desktop.Classes.UserManager;
+import cz.Stasak.desktop.GUI.GUIController;
+import cz.Stasak.desktop.GUI.JavaFXInitializer;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import org.example.desktop.spravauzivatelu_grafika.GUIController;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GUIControllerTest {
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class    GUIControllerTest {
 
     private UserManager userManager; // Skutečná instance
     private Admin admin; // Skutečný admin
     private GUIController controller; // Testovaná třída
+    private String testUsername;
 
     @BeforeAll
-    public static void initJavaFX() {
-        // Inicializace JavaFX prostředí
-        Platform.startup(() -> {});
+    public static void setupFX() {
+        JavaFXInitializer.init();
     }
+
 
     @BeforeEach
     public void setUp() {
         try {
             // Inicializace skutečných instancí
             userManager = new UserManager();
+            userManager.clearUsers();
+
             admin = new Admin("admin", "admin123");
             controller = new GUIController(userManager, admin);
+            testUsername = "testUser_" + UUID.randomUUID();
         } catch (Exception e) {
             fail("Initialization of test failed: " + e.getMessage());
         }
@@ -40,22 +51,21 @@ public class GUIControllerTest {
     public void testRegisterUser_Success() {
         Label errorLabel = new Label();
 
+        System.out.println("👤 Testovací uživatel: " + testUsername);
 
         System.out.println("Starting testRegisterUser_Success");
-        boolean result = controller.registerUser("testUser", "testPass123", errorLabel);
+        boolean result = controller.registerUser(testUsername, "testPass123", errorLabel);
 
         // Výstupy pro ladění
         System.out.println("Result: " + result);
         System.out.println("Error label visible: " + errorLabel.isVisible());
         System.out.println("Error label text: " + errorLabel.getText());
-        System.out.println("User exists in UserManager: " + (userManager.getUser("testUser") != null));
+        System.out.println("User exists in UserManager: " + (userManager.getUser(testUsername) != null));
 
-        assertTrue(result);
-        assertFalse(errorLabel.isVisible());
-        assertNotNull(userManager.getUser("testUser"));
+        assertTrue(result, "⚠️ Registrace selhala!");
+        assertFalse(errorLabel.isVisible(), "❌ Error label se neměl zobrazit po úspěšné registraci!");
+        assertNotNull(userManager.getUser(testUsername), "⚠️ Uživatel nebyl nalezen po registraci!");
     }
-
-
 
 
     @Test
@@ -63,10 +73,10 @@ public class GUIControllerTest {
         Label errorLabel = new Label();
 
         // Registrace uživatele poprvé
-        controller.registerUser("testUser", "testPass", errorLabel);
+        controller.registerUser(testUsername, "testPass", errorLabel);
 
         // Druhá registrace stejného uživatele (musí selhat)
-        boolean result = controller.registerUser("testUser", "anotherPass", errorLabel);
+        boolean result = controller.registerUser(testUsername, "anotherPass", errorLabel);
 
         assertFalse(result);
         assertTrue(errorLabel.isVisible());
@@ -81,13 +91,30 @@ public class GUIControllerTest {
 
     @Test
     public void testLoginUser_ValidUser() {
-        // Registrace a přihlášení běžného uživatele
-        userManager.registerUser("testUser", "testPass");
+        Label errorLabel = new Label();
+        System.out.println("🔥 Kontroluji existenci testUser před přihlášením...");
 
-        boolean result = controller.loginUser("testUser", "testPass");
+        // ❗ Registrujeme testUser **jen pokud neexistuje**
+        if (userManager.getUser(testUsername) == null) {
+            System.out.println("❌ testUser neexistuje! Registruji...");
+            boolean registrationSuccess = controller.registerUser(testUsername, "testPass123", errorLabel);
+            assertTrue(registrationSuccess, "⚠️ Registrace testUser selhala!");
+        }
 
-        assertTrue(result);
+        // ✅ Ujistíme se, že je testUser správně registrován
+        User registeredUser = userManager.getUser(testUsername);
+        assertNotNull(registeredUser, "⚠️ testUser nebyl nalezen po registraci!");
+        System.out.println("🔑 Heslo uložené v UserManager: " + registeredUser.getPassword());
+
+        // 📝 Pokusíme se přihlásit
+        boolean result = controller.loginUser(testUsername, "testPass123");
+        System.out.println("✅ Přihlášení výsledek: " + result);
+
+        assertTrue(result, "⚠️ Přihlášení testUser selhalo!");
     }
+
+
+
 
     @Test
     public void testLoginUser_InvalidUser() {
@@ -117,16 +144,23 @@ public class GUIControllerTest {
     public void testDeleteUser_Success() {
         ListView<String> userListView = new ListView<>();
 
+        // Debug výpisy – kontrola instance userManager
+        System.out.println("🔍 userManager (test): " + userManager);
+        System.out.println("🔍 userManager (controller): " + controller.getUserManager());
+
         // Registrace uživatele a přidání do seznamu
         userManager.registerUser("user1", "pass1");
         userListView.getItems().add("user1");
 
         // Smazání uživatele
-        controller.deleteUser("user1", userListView);
+        boolean result = controller.deleteUser("user1", userListView);
+        System.out.println("🗑️ Výsledek smazání: " + result);
 
+        assertTrue(result, "Uživatel nebyl smazán!");
         assertEquals(0, userListView.getItems().size());
         assertNull(userManager.getUser("user1"));
     }
+
 
     @Test
     public void testDeleteUser_Failure() {
@@ -167,23 +201,60 @@ public class GUIControllerTest {
     @Test
     public void testValidatePassword_Valid() {
         Label errorLabel = new Label();
-
-        // Heslo splňuje podmínky
         boolean result = controller.validatePassword("strongPass", errorLabel);
 
         assertTrue(result); // Heslo je validní
         assertFalse(errorLabel.isVisible());
     }
 
-
     @Test
-    public void testValidatePassword_Invalid() {
+    public void testValidatePassword_TooShort() {
         Label errorLabel = new Label();
-
         boolean result = controller.validatePassword("weak", errorLabel);
 
         assertFalse(result);
         assertTrue(errorLabel.isVisible());
         assertEquals("Password must be at least 8 characters long.", errorLabel.getText());
     }
+
+    @Test
+    public void testValidatePassword_Null() {
+        Label errorLabel = new Label();
+        boolean result = controller.validatePassword(null, errorLabel);
+
+        assertFalse(result);
+        assertTrue(errorLabel.isVisible());
+        assertEquals("Password cannot be empty.", errorLabel.getText());
+    }
+
+    @Test
+    public void testValidatePassword_OnlySpaces() {
+        Label errorLabel = new Label();
+        boolean result = controller.validatePassword("   ", errorLabel);
+
+        assertFalse(result);
+        assertTrue(errorLabel.isVisible());
+        assertEquals("Password cannot be empty.", errorLabel.getText());
+    }
+
+    @Test
+    public void testValidatePassword_LeadingSpace() {
+        Label errorLabel = new Label();
+        boolean result = controller.validatePassword(" pass1234", errorLabel);
+
+        assertFalse(result);
+        assertTrue(errorLabel.isVisible());
+        assertEquals("Password cannot start or end with spaces.", errorLabel.getText());
+    }
+
+    @Test
+    public void testValidatePassword_TrailingSpace() {
+        Label errorLabel = new Label();
+        boolean result = controller.validatePassword("pass1234 ", errorLabel);
+
+        assertFalse(result);
+        assertTrue(errorLabel.isVisible());
+        assertEquals("Password cannot start or end with spaces.", errorLabel.getText());
+    }
+
 }

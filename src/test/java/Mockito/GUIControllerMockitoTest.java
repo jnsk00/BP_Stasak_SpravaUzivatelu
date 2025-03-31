@@ -1,14 +1,16 @@
 package Mockito;
 
+import cz.Stasak.desktop.Classes.Admin;
+import cz.Stasak.desktop.Classes.User;
+import cz.Stasak.desktop.Classes.UserManager;
+import cz.Stasak.desktop.GUI.GUIController;
+import cz.Stasak.desktop.GUI.JavaFXInitializer;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import org.example.desktop.spravauzivatelu_grafika.GUIController;
-import org.example.desktop.Classes.Admin;
-import org.example.desktop.Classes.User;
-import org.example.desktop.Classes.UserManager;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,8 +21,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @ExtendWith(MockitoExtension.class) // Povolení Mockito v testovací třídě
@@ -40,12 +45,10 @@ public class GUIControllerMockitoTest {
     private GUIController controller;
 
     @BeforeAll
-    public static void initJavaFX() {
-        // Spustíme JavaFX Toolkit na pozadí, pokud ještě neběží
-        if (!Platform.isFxApplicationThread()) {
-            Platform.startup(() -> {});
-        }
+    public static void setupFX() {
+        JavaFXInitializer.init();
     }
+
 
     @BeforeEach
     public void setUp() {
@@ -141,6 +144,27 @@ public class GUIControllerMockitoTest {
     }
 
     @Test
+    public void testUpdateUserProfile_Success() {
+        when(userManager.updateUserProfile("oldUser", "newUser", "newPass")).thenReturn(true);
+
+        boolean result = controller.updateUserProfile("oldUser", "newUser", "newPass");
+
+        assertTrue(result);
+        verify(userManager).updateUserProfile("oldUser", "newUser", "newPass");
+    }
+
+    @Test
+    public void testUpdateUserProfile_Failure() {
+        when(userManager.updateUserProfile("oldUser", "newUser", "newPass")).thenReturn(false);
+
+        boolean result = controller.updateUserProfile("oldUser", "newUser", "newPass");
+
+        assertFalse(result);
+        verify(userManager).updateUserProfile("oldUser", "newUser", "newPass");
+    }
+
+
+    @Test
     public void testValidatePassword_Valid() {
         Label errorLabel = new Label();
 
@@ -160,4 +184,37 @@ public class GUIControllerMockitoTest {
         assertTrue(errorLabel.isVisible());
         assertEquals("Password must be at least 8 characters long.", errorLabel.getText());
     }
+
+    @Test
+    public void testValidatePassword_Null() {
+        Label errorLabel = new Label();
+        boolean result = controller.validatePassword(null, errorLabel);
+        assertFalse(result);
+        assertTrue(errorLabel.isVisible());
+        assertEquals("Password cannot be empty.", errorLabel.getText());
+    }
+
+    @Test
+    public void testValidatePassword_OnlySpaces() {
+        Label errorLabel = new Label();
+        boolean result = controller.validatePassword("   ", errorLabel);
+        assertFalse(result);
+        assertTrue(errorLabel.isVisible());
+        assertEquals("Password cannot be empty.", errorLabel.getText());
+    }
+
+    @Test
+    public void testValidatePassword_LeadingOrTrailingSpace() {
+        Label errorLabel = new Label();
+        boolean result1 = controller.validatePassword(" password", errorLabel);
+        assertFalse(result1);
+        assertTrue(errorLabel.isVisible());
+        assertEquals("Password cannot start or end with spaces.", errorLabel.getText());
+
+        result1 = controller.validatePassword("password ", errorLabel);
+        assertFalse(result1);
+        assertTrue(errorLabel.isVisible());
+        assertEquals("Password cannot start or end with spaces.", errorLabel.getText());
+    }
+
 }
