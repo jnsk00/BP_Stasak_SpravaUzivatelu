@@ -3,20 +3,21 @@ package cz.Stasak.desktop.GUI;
 import cz.Stasak.desktop.Classes.Admin;
 import cz.Stasak.desktop.Classes.UserManager;
 import cz.Stasak.shared.User;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import cz.Stasak.shared.ui.LabelInterface;
+import cz.Stasak.shared.ui.ListViewInterface;
 
 
-public class GUIController {
-    private final UserManager userManager;
-    private final Admin admin;
 
-    public GUIController(UserManager userManager, Admin admin) {
-        this.userManager = userManager;
-        this.admin = admin;
-    }
+    public class GUIController {
+        private final UserManager userManager;
+        private final Admin admin;
 
-    public boolean registerUser(String username, String password, Label errorLabel) {
+        public GUIController(UserManager userManager, Admin admin) {
+            this.userManager = userManager;
+            this.admin = admin;
+        }
+
+    public boolean registerUser(String username, String password, LabelInterface errorLabel) {
         System.out.println("Registering user: " + username);
         if (userManager.registerUser(username, password)) {
             errorLabel.setVisible(false); // Ujistíme se, že errorLabel je skrytý
@@ -31,38 +32,41 @@ public class GUIController {
 
 
 
-    public boolean loginUser(String username, String password) {
-        System.out.println("Attempting login with username: " + username + " and password: " + password);
+        public boolean loginUser(String username, String password, LabelInterface errorLabel) {
+            System.out.println("Attempting login with username: " + username + " and password: " + password);
 
-        // Ověření admin přihlášení
-        if (username != null && password != null &&
-                username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
-            System.out.println("Admin login successful.");
-            return true; // Přihlášení jako admin
+            // Ověření admin přihlášení
+            if (username != null && password != null &&
+                    username.equals(admin.getUsername()) && password.equals(admin.getPassword())) {
+                System.out.println("Admin login successful.");
+                return true;
+            }
+
+            // Ověření přihlášení běžného uživatele
+            User user = userManager.getUser(username);
+            if (user != null && user.getPassword().equals(password)) {
+                System.out.println("User login successful for: " + username);
+                return true;
+            }
+
+            // Neplatné přihlašovací údaje
+            System.out.println("Login failed for: " + username);
+            errorLabel.setText("Neplatné uživatelské jméno nebo heslo.");
+            errorLabel.setVisible(true);
+            return false;
         }
 
-        // Ověření přihlášení běžného uživatele
-        User user = userManager.getUser(username);
-        if (user != null && user.getPassword().equals(password)) {
-            System.out.println("User login successful for: " + username);
-            return true; // Úspěšné přihlášení běžného uživatele
-        }
-
-        // Neplatné přihlašovací údaje
-        System.out.println("Login failed for: " + username);
-        return false;
-    }
 
 
 
 
 
-    public void refreshUserList(ListView<String> userListView) {
+        public void refreshUserList(ListViewInterface<String> userListView) {
         userListView.getItems().clear();
         userManager.listUsers().forEach(user -> userListView.getItems().add(user.getUsername()));
     }
 
-    public boolean deleteUser(String username, ListView<String> userListView) {
+    public boolean deleteUser(String username, ListViewInterface<String> userListView) {
         if (userManager.deleteUser(username)) {
             refreshUserList(userListView);
             return true;
@@ -80,7 +84,7 @@ public class GUIController {
         return success;
     }
 
-    public boolean validatePassword(String password, Label errorLabel) {
+    public boolean validatePassword(String password, LabelInterface errorLabel) {
         if (password == null || password.trim().isEmpty()) {
             errorLabel.setText("Password cannot be empty.");
             errorLabel.setVisible(true);
