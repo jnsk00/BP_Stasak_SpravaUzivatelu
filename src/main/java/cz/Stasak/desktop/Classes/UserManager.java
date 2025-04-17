@@ -1,4 +1,5 @@
 package cz.Stasak.desktop.Classes;
+import cz.Stasak.shared.User;
 
 import java.io.*;
 import java.util.ArrayList;

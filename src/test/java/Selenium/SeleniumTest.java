@@ -13,7 +13,6 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SeleniumTest {
     private WebDriver driver;
@@ -30,17 +29,12 @@ public class SeleniumTest {
     @BeforeEach
     void setup() {
         driver = new ChromeDriver();
-
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get(baseUrl + "/index.html");
-
         driver.manage().deleteAllCookies();
         driver.navigate().refresh();
-
         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
-
     }
 
     @AfterEach
@@ -50,6 +44,12 @@ public class SeleniumTest {
         }
     }
 
+    private void loginAs(String username, String password) {
+        driver.findElement(By.id("loginUsername")).sendKeys(username);
+        driver.findElement(By.id("loginPassword")).sendKeys(password);
+        driver.findElement(By.id("loginButton")).click();
+    }
+
     @Test
     @Order(1)
     void testRegisterUser() {
@@ -57,70 +57,41 @@ public class SeleniumTest {
         driver.findElement(By.id("password")).sendKeys("testPass123");
         driver.findElement(By.className("register-btn")).click();
 
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        String alertText = alert.getText();
+        alert.accept();
 
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-            String alertText = alert.getText();
-            alert.accept();
-            assertEquals("Uživatel zaregistrován!", alertText, "Nečekaný alert!");
-        } catch (TimeoutException | NoAlertPresentException e) {
-            fail("❌ Alert se neobjevil po registraci! Pravděpodobně došlo k chybě.");
-        }
+        assertEquals("Uživatel zaregistrován!", alertText);
     }
 
-        @Test
+    @Test
     @Order(2)
     void testLogin() {
-
-        driver.findElement(By.id("loginUsername")).sendKeys(testUsername);
-        driver.findElement(By.id("loginPassword")).sendKeys("testPass123");
-        driver.findElement(By.id("loginButton")).click();
-
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-            boolean loginSuccess = wait.until(ExpectedConditions.urlContains("user-panel.html"));
-            assertTrue(loginSuccess, "Nejsme na přihlašovací stránce!");
-
-        }
+        loginAs(testUsername, "testPass123");
+        boolean loginSuccess = wait.until(ExpectedConditions.urlContains("user-panel.html"));
+        assertTrue(loginSuccess, "Nepovedlo se přihlášení – chybí redirect na uživatelský panel.");
+    }
 
     @Test
     @Order(3)
-    void testUpdateUser() throws InterruptedException {
-        testLogin();
+    void testUpdateUser() {
+        loginAs(testUsername, "testPass123");
+        wait.until(ExpectedConditions.urlContains("user-panel.html"));
 
         driver.findElement(By.id("newUsername")).sendKeys("updatedUser");
         driver.findElement(By.id("newPassword")).sendKeys("newPass123");
         driver.findElement(By.xpath("//button[text()='Uložit změny']")).click();
 
-        Thread.sleep(500);
-
-    // Poté čekání na alert
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        try {
-            wait.until(ExpectedConditions.alertIsPresent());
-            Alert alert = driver.switchTo().alert();
-            System.out.println("✅ Alert text: " + alert.getText());
-            alert.accept();
-        } catch (TimeoutException e) {
-            System.out.println("ALERT SE NEZOBRAZIL!");
-        }
+        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+        assertEquals("Údaje byly úspěšně aktualizovány.", alert.getText());
+        alert.accept();
     }
-
 
     @Test
     @Order(4)
     void testDeleteUser() {
-        if (wait == null) {
-            throw new IllegalStateException("WebDriverWait nebyl správně inicializován!");
-        }
-
-        driver.findElement(By.id("loginUsername")).sendKeys("admin");
-        driver.findElement(By.id("loginPassword")).sendKeys("admin123");
-        driver.findElement(By.id("loginButton")).click();
-
-
-        wait.until(ExpectedConditions.urlContains("/admin-panel"));
-
+        loginAs("admin", "admin123");
+        wait.until(ExpectedConditions.urlContains("admin-panel"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("userList")));
 
         List<WebElement> rows = driver.findElements(By.cssSelector("#userList tr"));
@@ -128,33 +99,22 @@ public class SeleniumTest {
 
         for (WebElement row : rows) {
             List<WebElement> cells = row.findElements(By.tagName("td"));
-
             if (!cells.isEmpty() && cells.get(0).getText().equals("updatedUser")) {
                 userFound = true;
+                row.findElement(By.xpath(".//button[contains(text(),'Smazat')]")).click();
 
-
-                WebElement deleteButton = row.findElement(By.xpath(".//button[contains(text(),'Smazat')]"));
-                deleteButton.click();
-
-
-                try {
-                    Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-                    alert.accept(); // Potvrď smazání
-                } catch (Exception e) {
-                    System.out.println("Žádný alert k potvrzení.");
-                }
-
-                // ✅ Počkej na opětovné načtení seznamu uživatelů
+                Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+                alert.accept();
                 wait.until(ExpectedConditions.stalenessOf(row));
                 break;
             }
         }
 
-
+        assertTrue(userFound, "Uživatel updatedUser nebyl nalezen v seznamu.");
         List<WebElement> updatedRows = driver.findElements(By.cssSelector("#userList tr"));
         boolean userStillExists = updatedRows.stream()
                 .anyMatch(r -> r.findElements(By.tagName("td")).get(0).getText().equals("updatedUser"));
 
-        assertFalse(userStillExists, "Uživatel 'updatedUser' stále existuje, i když měl být smazán!");
+        assertFalse(userStillExists, "Uživatel 'updatedUser' stále existuje po pokusu o smazání.");
     }
 }

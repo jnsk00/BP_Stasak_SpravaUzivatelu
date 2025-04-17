@@ -1,0 +1,95 @@
+-------------------------------------------------------------------------------
+Test set: JMockit.UserControllerJMockitTest
+-------------------------------------------------------------------------------
+Tests run: 9, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 0.065 s <<< FAILURE! -- in JMockit.UserControllerJMockitTest
+JMockit.UserControllerJMockitTest.testDeleteUser_Success -- Time elapsed: 0.023 s <<< ERROR!
+java.lang.ExceptionInInitializerError
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.IllegalStateException: JMockit didn't get initialized; please check the -javaagent JVM initialization parameter was used
+	at mockit.internal.startup.Startup.verifyInitialization(Startup.java:51)
+	at mockit.Invocations.<clinit>(Invocations.java:23)
+	... 4 more
+
+JMockit.UserControllerJMockitTest.testUpdateUser_Success -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class mockit.Expectations
+	at JMockit.UserControllerJMockitTest.testUpdateUser_Success(UserControllerJMockitTest.java:89)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ExceptionInInitializerError: Exception java.lang.ExceptionInInitializerError [in thread "main"]
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	... 3 more
+
+JMockit.UserControllerJMockitTest.testGetAllUsers -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class mockit.Expectations
+	at JMockit.UserControllerJMockitTest.testGetAllUsers(UserControllerJMockitTest.java:155)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ExceptionInInitializerError: Exception java.lang.ExceptionInInitializerError [in thread "main"]
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	... 3 more
+
+JMockit.UserControllerJMockitTest.testRegisterUser_Success -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class mockit.Expectations
+	at JMockit.UserControllerJMockitTest.testRegisterUser_Success(UserControllerJMockitTest.java:27)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ExceptionInInitializerError: Exception java.lang.ExceptionInInitializerError [in thread "main"]
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	... 3 more
+
+JMockit.UserControllerJMockitTest.testUpdateUser_Failure -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class mockit.Expectations
+	at JMockit.UserControllerJMockitTest.testUpdateUser_Failure(UserControllerJMockitTest.java:106)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ExceptionInInitializerError: Exception java.lang.ExceptionInInitializerError [in thread "main"]
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	... 3 more
+
+JMockit.UserControllerJMockitTest.testDeleteUser_NotFound -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class mockit.Expectations
+	at JMockit.UserControllerJMockitTest.testDeleteUser_NotFound(UserControllerJMockitTest.java:137)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ExceptionInInitializerError: Exception java.lang.ExceptionInInitializerError [in thread "main"]
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	... 3 more
+
+JMockit.UserControllerJMockitTest.testLoginUser_Success -- Time elapsed: 0.002 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class mockit.Expectations
+	at JMockit.UserControllerJMockitTest.testLoginUser_Success(UserControllerJMockitTest.java:56)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ExceptionInInitializerError: Exception java.lang.ExceptionInInitializerError [in thread "main"]
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	... 3 more
+
+JMockit.UserControllerJMockitTest.testRegisterUser_Failure_AlreadyExists -- Time elapsed: 0 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class mockit.Expectations
+	at JMockit.UserControllerJMockitTest.testRegisterUser_Failure_AlreadyExists(UserControllerJMockitTest.java:40)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ExceptionInInitializerError: Exception java.lang.ExceptionInInitializerError [in thread "main"]
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	... 3 more
+
+JMockit.UserControllerJMockitTest.testLoginUser_InvalidCredentials -- Time elapsed: 0.001 s <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class mockit.Expectations
+	at JMockit.UserControllerJMockitTest.testLoginUser_InvalidCredentials(UserControllerJMockitTest.java:72)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+Caused by: java.lang.ExceptionInInitializerError: Exception java.lang.ExceptionInInitializerError [in thread "main"]
+	at JMockit.UserControllerJMockitTest.testDeleteUser_Success(UserControllerJMockitTest.java:124)
+	... 3 more
+

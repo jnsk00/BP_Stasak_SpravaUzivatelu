@@ -1,0 +1,23 @@
+----- Iterace 1 -----
+Selenium: 4316 ms
+Playwright: 4150 ms
+
+----- Iterace 2 -----
+Selenium: 4106 ms
+Playwright: 1362 ms
+
+----- Iterace 3 -----
+Selenium: 4569 ms
+Playwright: 1346 ms
+
+----- Iterace 4 -----
+Selenium: 4126 ms
+Playwright: 1357 ms
+
+----- Iterace 5 -----
+Selenium: 4146 ms
+Playwright: 1352 ms
+
+===== Průměrné časy =====
+Selenium avg: 4252 ms
+Playwright avg: 1913 ms

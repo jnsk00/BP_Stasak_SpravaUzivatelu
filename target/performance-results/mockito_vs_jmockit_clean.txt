@@ -1,0 +1,23 @@
+----- Iterace 1 -----
+Mockito čas: 2990 ms
+JMockit čas: 36 ms
+
+----- Iterace 2 -----
+Mockito čas: 47 ms
+JMockit čas: 11 ms
+
+----- Iterace 3 -----
+Mockito čas: 43 ms
+JMockit čas: 9 ms
+
+----- Iterace 4 -----
+Mockito čas: 32 ms
+JMockit čas: 9 ms
+
+----- Iterace 5 -----
+Mockito čas: 30 ms
+JMockit čas: 8 ms
+
+===== Průměrné časy =====
+Mockito avg: 628 ms
+JMockit avg: 14 ms

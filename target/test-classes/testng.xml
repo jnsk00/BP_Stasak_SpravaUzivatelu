@@ -2,7 +2,7 @@
 <suite name="TestNGSuite">
     <test name="TestNGTests">
         <packages>
-            <package name="TestNG"/>
+            <package name="testng"/>
         </packages>
     </test>
 </suite>

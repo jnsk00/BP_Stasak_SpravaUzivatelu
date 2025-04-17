@@ -1,0 +1,23 @@
+----- Iterace 1 -----
+JUnit čas: 404 ms
+TestNG čas: 207 ms
+
+----- Iterace 2 -----
+JUnit čas: 7 ms
+TestNG čas: 35 ms
+
+----- Iterace 3 -----
+JUnit čas: 7 ms
+TestNG čas: 33 ms
+
+----- Iterace 4 -----
+JUnit čas: 7 ms
+TestNG čas: 28 ms
+
+----- Iterace 5 -----
+JUnit čas: 5 ms
+TestNG čas: 25 ms
+
+===== Průměrné časy =====
+JUnit avg: 86 ms
+TestNG avg: 65 ms

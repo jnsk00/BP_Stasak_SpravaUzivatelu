@@ -3,8 +3,10 @@ package cz.Stasak.shared;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 
-public class User {
+
+public class User implements Serializable {
 
     private String username;
 
@@ -14,6 +16,11 @@ public class User {
     private boolean isAdmin;
 
     public User() {}
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
 
     public String getUsername() {

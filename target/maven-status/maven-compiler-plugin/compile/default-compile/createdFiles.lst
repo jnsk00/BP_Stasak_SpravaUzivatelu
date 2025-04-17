@@ -5,7 +5,6 @@ cz\Stasak\shared\User.class
 cz\Stasak\backend\AuthController.class
 cz\Stasak\desktop\GUI\JavaFXInitializer.class
 cz\Stasak\backend\UserController.class
-cz\Stasak\desktop\Classes\User.class
 cz\Stasak\desktop\Classes\UserManager.class
 cz\Stasak\desktop\GUI\WebViewApp.class
 cz\Stasak\desktop\GUI\GUI.class

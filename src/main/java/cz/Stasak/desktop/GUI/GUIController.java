@@ -1,8 +1,8 @@
 package cz.Stasak.desktop.GUI;
 
 import cz.Stasak.desktop.Classes.Admin;
-import cz.Stasak.desktop.Classes.User;
 import cz.Stasak.desktop.Classes.UserManager;
+import cz.Stasak.shared.User;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 

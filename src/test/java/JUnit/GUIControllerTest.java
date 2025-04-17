@@ -1,11 +1,9 @@
 package JUnit;
 
 import cz.Stasak.desktop.Classes.Admin;
-import cz.Stasak.desktop.Classes.User;
 import cz.Stasak.desktop.Classes.UserManager;
 import cz.Stasak.desktop.GUI.GUIController;
 import cz.Stasak.desktop.GUI.JavaFXInitializer;
-import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
@@ -34,16 +32,17 @@ public class    GUIControllerTest {
 
     @BeforeEach
     public void setUp() {
-        try {
-            // Inicializace skutečných instancí
-            userManager = new UserManager();
-            userManager.clearUsers();
+        userManager = new UserManager();
+        userManager.clearUsers();
+        admin = new Admin("admin", "admin123");
+        controller = new GUIController(userManager, admin);
+        testUsername = "testUser_" + UUID.randomUUID();
+    }
 
-            admin = new Admin("admin", "admin123");
-            controller = new GUIController(userManager, admin);
-            testUsername = "testUser_" + UUID.randomUUID();
-        } catch (Exception e) {
-            fail("Initialization of test failed: " + e.getMessage());
+    private void registerUserIfNotExists(String username, String password) {
+        Label errorLabel = new Label();
+        if (userManager.getUser(username) == null) {
+            assertTrue(controller.registerUser(username, password, errorLabel));
         }
     }
 
@@ -51,20 +50,11 @@ public class    GUIControllerTest {
     public void testRegisterUser_Success() {
         Label errorLabel = new Label();
 
-        System.out.println("👤 Testovací uživatel: " + testUsername);
-
-        System.out.println("Starting testRegisterUser_Success");
         boolean result = controller.registerUser(testUsername, "testPass123", errorLabel);
 
-        // Výstupy pro ladění
-        System.out.println("Result: " + result);
-        System.out.println("Error label visible: " + errorLabel.isVisible());
-        System.out.println("Error label text: " + errorLabel.getText());
-        System.out.println("User exists in UserManager: " + (userManager.getUser(testUsername) != null));
-
-        assertTrue(result, "⚠️ Registrace selhala!");
-        assertFalse(errorLabel.isVisible(), "❌ Error label se neměl zobrazit po úspěšné registraci!");
-        assertNotNull(userManager.getUser(testUsername), "⚠️ Uživatel nebyl nalezen po registraci!");
+        assertTrue(result);
+        assertFalse(errorLabel.isVisible());
+        assertNotNull(userManager.getUser(testUsername));
     }
 
 
@@ -72,10 +62,7 @@ public class    GUIControllerTest {
     public void testRegisterUser_Failure() {
         Label errorLabel = new Label();
 
-        // Registrace uživatele poprvé
         controller.registerUser(testUsername, "testPass", errorLabel);
-
-        // Druhá registrace stejného uživatele (musí selhat)
         boolean result = controller.registerUser(testUsername, "anotherPass", errorLabel);
 
         assertFalse(result);
@@ -85,42 +72,19 @@ public class    GUIControllerTest {
 
     @Test
     public void testLoginUser_Admin() {
-        // Ověření přihlášení admina
         assertTrue(controller.loginUser("admin", "admin123"));
     }
 
     @Test
     public void testLoginUser_ValidUser() {
-        Label errorLabel = new Label();
-        System.out.println("🔥 Kontroluji existenci testUser před přihlášením...");
-
-        // ❗ Registrujeme testUser **jen pokud neexistuje**
-        if (userManager.getUser(testUsername) == null) {
-            System.out.println("❌ testUser neexistuje! Registruji...");
-            boolean registrationSuccess = controller.registerUser(testUsername, "testPass123", errorLabel);
-            assertTrue(registrationSuccess, "⚠️ Registrace testUser selhala!");
-        }
-
-        // ✅ Ujistíme se, že je testUser správně registrován
-        User registeredUser = userManager.getUser(testUsername);
-        assertNotNull(registeredUser, "⚠️ testUser nebyl nalezen po registraci!");
-        System.out.println("🔑 Heslo uložené v UserManager: " + registeredUser.getPassword());
-
-        // 📝 Pokusíme se přihlásit
+        registerUserIfNotExists(testUsername, "testPass123");
         boolean result = controller.loginUser(testUsername, "testPass123");
-        System.out.println("✅ Přihlášení výsledek: " + result);
-
-        assertTrue(result, "⚠️ Přihlášení testUser selhalo!");
+        assertTrue(result);
     }
-
-
-
 
     @Test
     public void testLoginUser_InvalidUser() {
-        // Přihlášení s neplatnými údaji
         boolean result = controller.loginUser("invalidUser", "wrongPass");
-
         assertFalse(result);
     }
 
@@ -128,35 +92,24 @@ public class    GUIControllerTest {
     public void testRefreshUserList() {
         ListView<String> userListView = new ListView<>();
 
-        // Registrace uživatelů
         userManager.registerUser("user1", "pass1");
         userManager.registerUser("user2", "pass2");
 
-        // Obnovení seznamu uživatelů
         controller.refreshUserList(userListView);
 
         assertEquals(2, userListView.getItems().size());
-        assertTrue(userListView.getItems().contains("user1"));
-        assertTrue(userListView.getItems().contains("user2"));
+        assertTrue(userListView.getItems().containsAll(java.util.List.of("user1", "user2")));
     }
 
     @Test
     public void testDeleteUser_Success() {
         ListView<String> userListView = new ListView<>();
-
-        // Debug výpisy – kontrola instance userManager
-        System.out.println("🔍 userManager (test): " + userManager);
-        System.out.println("🔍 userManager (controller): " + controller.getUserManager());
-
-        // Registrace uživatele a přidání do seznamu
         userManager.registerUser("user1", "pass1");
         userListView.getItems().add("user1");
 
-        // Smazání uživatele
         boolean result = controller.deleteUser("user1", userListView);
-        System.out.println("🗑️ Výsledek smazání: " + result);
 
-        assertTrue(result, "Uživatel nebyl smazán!");
+        assertTrue(result);
         assertEquals(0, userListView.getItems().size());
         assertNull(userManager.getUser("user1"));
     }
@@ -165,11 +118,8 @@ public class    GUIControllerTest {
     @Test
     public void testDeleteUser_Failure() {
         ListView<String> userListView = new ListView<>();
-
-        // Přidání uživatele do seznamu
         userListView.getItems().add("user1");
 
-        // Smazání uživatele, který neexistuje v UserManager
         controller.deleteUser("user1", userListView);
 
         assertEquals(1, userListView.getItems().size());
@@ -178,10 +128,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testUpdateUserProfile_Success() {
-        // Registrace uživatele
         userManager.registerUser("oldUser", "oldPass");
 
-        // Aktualizace uživatelského profilu
         boolean result = controller.updateUserProfile("oldUser", "newUser", "newPass");
 
         assertTrue(result);
@@ -192,7 +140,6 @@ public class    GUIControllerTest {
 
     @Test
     public void testUpdateUserProfile_Failure() {
-        // Pokus o aktualizaci neexistujícího uživatele
         boolean result = controller.updateUserProfile("nonExistentUser", "newUser", "newPass");
 
         assertFalse(result);
@@ -201,16 +148,16 @@ public class    GUIControllerTest {
     @Test
     public void testValidatePassword_Valid() {
         Label errorLabel = new Label();
-        boolean result = controller.validatePassword("strongPass", errorLabel);
+        boolean result = controller.validatePassword("strongPass123", errorLabel);
 
-        assertTrue(result); // Heslo je validní
+        assertTrue(result);
         assertFalse(errorLabel.isVisible());
     }
 
     @Test
     public void testValidatePassword_TooShort() {
         Label errorLabel = new Label();
-        boolean result = controller.validatePassword("weak", errorLabel);
+        boolean result = controller.validatePassword("short", errorLabel);
 
         assertFalse(result);
         assertTrue(errorLabel.isVisible());
