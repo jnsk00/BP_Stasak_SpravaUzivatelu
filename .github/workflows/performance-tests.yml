@@ -21,7 +21,7 @@ jobs:
         run: mvn clean install -DskipTests
 
       - name: 🚀 Run All Performance Tests
-        run: mvn verify -Pperformance
+        run: mvn exec:java -Dexec.mainClass="Performance.AllPerformanceTestsRunner" -Dexec.classpathScope=test
 
       - name: 💾 Upload performance results
         uses: actions/upload-artifact@v4
