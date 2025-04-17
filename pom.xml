@@ -170,23 +170,6 @@
                     <mainClass>cz.stasak.desktop.spravauzivatelu_grafika.WebViewApp</mainClass>
                 </configuration>
             </plugin>
-            <!-- GitHub automatizace -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.5.0</version>
-                <executions>
-                    <execution>
-                        <id>performance-tests</id>
-                        <phase>verify</phase>
-                        <goals><goal>java</goal></goals>
-                        <configuration>
-                            <mainClass>Performance.AllPerformanceTestsRunner</mainClass>
-                            <classpathScope>test</classpathScope>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -210,8 +193,33 @@
             </plugins>
         </build>
     </profile>
+        
+        <profile>
+            <id>performance</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.5.0</version>
+                        <executions>
+                            <execution>
+                                <id>performance-tests</id>
+                                <phase>verify</phase>
+                                <goals><goal>java</goal></goals>
+                                <configuration>
+                                    <mainClass>Performance.AllPerformanceTestsRunner</mainClass>
+                                    <classpathScope>test</classpathScope>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-    <!-- testng + JMockit + Playwright -->
+
+        <!-- testng + JMockit + Playwright -->
         <profile>
             <id>extended-tests</id>
             <build>
