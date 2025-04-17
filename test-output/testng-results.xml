@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="16" passed="16" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-04-17T20:40:45 SELČ" name="Command line suite" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="6">
+    <groups>
+    </groups>
+    <test started-at="2025-04-17T20:40:45 SELČ" name="Command line test" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="6">
+      <class name="testng.GUIControllerTestNGTest">
+        <test-method signature="testDeleteUser_Failure()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testDeleteUser_Failure" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDeleteUser_Failure -->
+        <test-method signature="testDeleteUser_Success()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testDeleteUser_Success" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testDeleteUser_Success -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initJavaFX()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="initJavaFX" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initJavaFX -->
+        <test-method signature="testLoginUser_Admin()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testLoginUser_Admin" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginUser_Admin -->
+        <test-method signature="testLoginUser_InvalidUser()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testLoginUser_InvalidUser" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginUser_InvalidUser -->
+        <test-method signature="testLoginUser_ValidUser()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testLoginUser_ValidUser" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLoginUser_ValidUser -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testUpdateUserProfile_Failure()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testUpdateUserProfile_Failure" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdateUserProfile_Failure -->
+        <test-method signature="testRefreshUserList()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testRefreshUserList" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRefreshUserList -->
+        <test-method signature="testRegisterUser_Success()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testRegisterUser_Success" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegisterUser_Success -->
+        <test-method signature="testUpdateUserProfile_Success()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testUpdateUserProfile_Success" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testUpdateUserProfile_Success -->
+        <test-method signature="testRegisterUser_Failure()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testRegisterUser_Failure" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRegisterUser_Failure -->
+        <test-method signature="testValidatePassword_EmptyPassword()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testValidatePassword_EmptyPassword" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidatePassword_EmptyPassword -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testValidatePassword_EndsWithSpace()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testValidatePassword_EndsWithSpace" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidatePassword_EndsWithSpace -->
+        <test-method signature="testValidatePassword_StartsWithSpace()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testValidatePassword_StartsWithSpace" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidatePassword_StartsWithSpace -->
+        <test-method signature="testValidatePassword_NullPassword()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testValidatePassword_NullPassword" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidatePassword_NullPassword -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="testValidatePassword_TooShort()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testValidatePassword_TooShort" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidatePassword_TooShort -->
+        <test-method signature="testValidatePassword_Valid()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="testValidatePassword_Valid" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testValidatePassword_Valid -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testng.GUIControllerTestNGTest@1bb6bc81]" started-at="2025-04-17T20:40:45 SELČ" name="setUp" finished-at="2025-04-17T20:40:45 SELČ" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+      </class> <!-- testng.GUIControllerTestNGTest -->
+    </test> <!-- Command line test -->
+  </suite> <!-- Command line suite -->
+</testng-results>
