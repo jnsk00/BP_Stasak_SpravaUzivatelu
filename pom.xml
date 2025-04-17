@@ -170,10 +170,11 @@
                     <mainClass>cz.stasak.desktop.spravauzivatelu_grafika.WebViewApp</mainClass>
                 </configuration>
             </plugin>
+            <!-- GitHub automatizace -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.5.0</version>
                 <executions>
                     <execution>
                         <id>performance-tests</id>
