@@ -4,13 +4,14 @@ import cz.Stasak.desktop.Classes.Admin;
 import cz.Stasak.desktop.Classes.UserManager;
 import cz.Stasak.desktop.GUI.GUIController;
 import cz.Stasak.desktop.GUI.JavaFXInitializer;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
+import testutils.FakeLabel;
+import testutils.FakeListView;
 
 import java.util.UUID;
 
@@ -40,7 +41,8 @@ public class    GUIControllerTest {
     }
 
     private void registerUserIfNotExists(String username, String password) {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
+
         if (userManager.getUser(username) == null) {
             assertTrue(controller.registerUser(username, password, errorLabel));
         }
@@ -48,7 +50,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testRegisterUser_Success() {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
+
 
         boolean result = controller.registerUser(testUsername, "testPass123", errorLabel);
 
@@ -60,7 +63,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testRegisterUser_Failure() {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
+
 
         controller.registerUser(testUsername, "testPass", errorLabel);
         boolean result = controller.registerUser(testUsername, "anotherPass", errorLabel);
@@ -72,25 +76,29 @@ public class    GUIControllerTest {
 
     @Test
     public void testLoginUser_Admin() {
-        assertTrue(controller.loginUser("admin", "admin123"));
+        FakeLabel errorLabel = new FakeLabel();
+        assertTrue(controller.loginUser("admin", "admin123", errorLabel));
     }
 
     @Test
     public void testLoginUser_ValidUser() {
+        FakeLabel errorLabel = new FakeLabel();
         registerUserIfNotExists(testUsername, "testPass123");
-        boolean result = controller.loginUser(testUsername, "testPass123");
+        boolean result = controller.loginUser(testUsername, "testPass123", errorLabel);
         assertTrue(result);
     }
 
     @Test
     public void testLoginUser_InvalidUser() {
-        boolean result = controller.loginUser("invalidUser", "wrongPass");
+        FakeLabel errorLabel = new FakeLabel();
+        boolean result = controller.loginUser("invalidUser", "wrongPass", errorLabel);
         assertFalse(result);
     }
 
     @Test
     public void testRefreshUserList() {
-        ListView<String> userListView = new ListView<>();
+        FakeListView<String> userListView = new FakeListView<>();
+
 
         userManager.registerUser("user1", "pass1");
         userManager.registerUser("user2", "pass2");
@@ -103,7 +111,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testDeleteUser_Success() {
-        ListView<String> userListView = new ListView<>();
+        FakeListView<String> userListView = new FakeListView<>();
+
         userManager.registerUser("user1", "pass1");
         userListView.getItems().add("user1");
 
@@ -117,7 +126,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testDeleteUser_Failure() {
-        ListView<String> userListView = new ListView<>();
+        FakeListView<String> userListView = new FakeListView<>();
+        ;
         userListView.getItems().add("user1");
 
         controller.deleteUser("user1", userListView);
@@ -147,7 +157,7 @@ public class    GUIControllerTest {
 
     @Test
     public void testValidatePassword_Valid() {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
         boolean result = controller.validatePassword("strongPass123", errorLabel);
 
         assertTrue(result);
@@ -156,7 +166,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testValidatePassword_TooShort() {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
+
         boolean result = controller.validatePassword("short", errorLabel);
 
         assertFalse(result);
@@ -166,7 +177,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testValidatePassword_Null() {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
+
         boolean result = controller.validatePassword(null, errorLabel);
 
         assertFalse(result);
@@ -176,7 +188,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testValidatePassword_OnlySpaces() {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
+
         boolean result = controller.validatePassword("   ", errorLabel);
 
         assertFalse(result);
@@ -186,7 +199,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testValidatePassword_LeadingSpace() {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
+
         boolean result = controller.validatePassword(" pass1234", errorLabel);
 
         assertFalse(result);
@@ -196,7 +210,8 @@ public class    GUIControllerTest {
 
     @Test
     public void testValidatePassword_TrailingSpace() {
-        Label errorLabel = new Label();
+        FakeLabel errorLabel = new FakeLabel();
+
         boolean result = controller.validatePassword("pass1234 ", errorLabel);
 
         assertFalse(result);
