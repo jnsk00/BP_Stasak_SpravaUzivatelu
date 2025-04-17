@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1599e5ee-73d3-431e-bb8f-488a133a61c9" name="Changes" comment="update" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2sbPD3ML3eLG6qkZRsIjHsa3fmN" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AllPerformanceTestsRunner.executor": "Run",
+    "Application.JUnitVsTestNGPerformanceTest.executor": "Run",
+    "Application.MockitoVsJMockitPerformanceTest.executor": "Run",
+    "Application.SeleniumVsPlaywrightPerformanceTest.executor": "Run",
+    "JUnit.GUIControllerJMockitTest.executor": "Run",
+    "JUnit.GUIControllerMockitoTest.executor": "Run",
+    "JUnit.GUIControllerTest and 1 more.executor": "Run",
+    "JUnit.GUIControllerTest and 2 more.executor": "Run",
+    "JUnit.GUIControllerTest.executor": "Run",
+    "JUnit.PlaywrightTest.executor": "Run",
+    "JUnit.PlaywrightTest.testDeleteUser.executor": "Run",
+    "JUnit.PlaywrightTest.testUpdateUser.executor": "Run",
+    "JUnit.SeleniumTest and 4 more.executor": "Run",
+    "JUnit.SeleniumTest.executor": "Run",
+    "JUnit.SeleniumTest.testRegisterUser.executor": "Run",
+    "JUnit.UserControllerJMockitTest (1).executor": "Run",
+    "JUnit.UserControllerJMockitTest.executor": "Run",
+    "JUnit.UserControllerMockitoTest.executor": "Run",
+    "JUnit.java in spravauzivatelu-grafika.executor": "Run",
+    "Maven.spravauzivatelu-grafika [clean].executor": "Run",
+    "Maven.spravauzivatelu-grafika [compile].executor": "Run",
+    "Maven.spravauzivatelu-grafika [package].executor": "Run",
+    "Maven.spravauzivatelu-grafika [test].executor": "Run",
+    "Maven.spravauzivatelu-grafika [validate].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.SpravaUzivateluApplication.executor": "Run",
+    "TestNG.<default>.executor": "Run",
+    "TestNG.GUIControllerTestNGTest (1).executor": "Run",
+    "TestNG.GUIControllerTestNGTest.executor": "Run",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/gamer/Desktop/BP_Stašák/BP_SpravaUzivatelu",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.53908044",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\gamer\Desktop\BP_Stašák\BP_SpravaUzivatelu\src\testng\java\TestNG" />
+      <recent name="C:\Users\gamer\Desktop\BP_Stašák\BP_SpravaUzivatelu\src\test\java" />
+      <recent name="C:\Users\gamer\Desktop\BP_Stašák\BP_SpravaUzivatelu\src\test" />
+      <recent name="C:\Users\gamer\Desktop\BP_Stašák\BP_SpravaUzivatelu\src\main\resources\static" />
+      <recent name="C:\Users\gamer\Desktop\BP_Stašák\BP_SpravaUzivatelu\src\main\java\cz\Stasak\backend" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gamer\Desktop\BP_Stašák\BP_SpravaUzivatelu\src\test\resources" />
+      <recent name="C:\Users\gamer\Desktop\BP_Stašák\BP_SpravaUzivatelu\src\test\resources\testng" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.AllPerformanceTestsRunner">
+    <configuration name="AllPerformanceTestsRunner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Performance.AllPerformanceTestsRunner" />
+      <module name="spravauzivatelu-grafika" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Performance.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JUnitVsTestNGPerformanceTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Performance.JUnitVsTestNGPerformanceTest" />
+      <module name="spravauzivatelu-grafika" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Performance.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MockitoVsJMockitPerformanceTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Performance.MockitoVsJMockitPerformanceTest" />
+      <module name="spravauzivatelu-grafika" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Performance.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SeleniumVsPlaywrightPerformanceTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Performance.SeleniumVsPlaywrightPerformanceTest" />
+      <module name="spravauzivatelu-grafika" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Performance.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerJMockitTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spravauzivatelu-grafika" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="JMockit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="JMockit" />
+      <option name="MAIN_CLASS_NAME" value="JMockit.UserControllerJMockitTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserControllerJMockitTest" type="JUnit" factoryName="JUnit">
+      <module name="BP_SpravaUzivatelu" />
+      <option name="PACKAGE_NAME" value="JMockit" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea -javaagent:&quot;C:\Users\gamer\.m2\repository\org\jmockit\jmockit\1.49\jmockit-1.49.jar&quot; " />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BpSpravaUzivateluApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="BP_SpravaUzivatelu" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cz.Stasak.spravauzivatelu.BpSpravaUzivateluApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpravaUzivateluApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="spravauzivatelu-grafika" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cz.Stasak.backend.SpravaUzivateluApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.AllPerformanceTestsRunner" />
+      <item itemvalue="Application.JUnitVsTestNGPerformanceTest" />
+      <item itemvalue="Application.MockitoVsJMockitPerformanceTest" />
+      <item itemvalue="Application.SeleniumVsPlaywrightPerformanceTest" />
+      <item itemvalue="JUnit.UserControllerJMockitTest" />
+      <item itemvalue="JUnit.UserControllerJMockitTest (1)" />
+      <item itemvalue="Spring Boot.BpSpravaUzivateluApplication" />
+      <item itemvalue="Spring Boot.SpravaUzivateluApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AllPerformanceTestsRunner" />
+        <item itemvalue="Application.SeleniumVsPlaywrightPerformanceTest" />
+        <item itemvalue="Application.MockitoVsJMockitPerformanceTest" />
+        <item itemvalue="Application.JUnitVsTestNGPerformanceTest" />
+        <item itemvalue="JUnit.UserControllerJMockitTest (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.189" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.189" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\gamer\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1599e5ee-73d3-431e-bb8f-488a133a61c9" name="Changes" comment="" />
+      <created>1738721179136</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738721179136</updated>
+      <workItem from="1738721180072" duration="2109000" />
+      <workItem from="1743358936328" duration="18096000" />
+      <workItem from="1743377912638" duration="3559000" />
+      <workItem from="1743381806744" duration="647000" />
+      <workItem from="1743382510746" duration="1153000" />
+      <workItem from="1743383682640" duration="13000" />
+      <workItem from="1744871819165" duration="82000" />
+      <workItem from="1744871997937" duration="5748000" />
+      <workItem from="1744877965269" duration="3988000" />
+      <workItem from="1744882876643" duration="231000" />
+      <workItem from="1744883113715" duration="5268000" />
+      <workItem from="1744909983254" duration="5861000" />
+    </task>
+    <task id="LOCAL-00001" summary="tests">
+      <option name="closed" value="true" />
+      <created>1743382123658</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743382123658</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update">
+      <option name="closed" value="true" />
+      <created>1744915807792</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1744915807792</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="tests" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
