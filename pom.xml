@@ -181,6 +181,7 @@
                         <goals><goal>java</goal></goals>
                         <configuration>
                             <mainClass>Performance.AllPerformanceTestsRunner</mainClass>
+                            <classpathScope>test</classpathScope>
                         </configuration>
                     </execution>
                 </executions>
