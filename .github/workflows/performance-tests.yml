@@ -1,0 +1,30 @@
+name: Run Performance Benchmarks
+
+on:
+  workflow_dispatch: # manuální spuštění
+
+jobs:
+  performance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🧾 Checkout code
+        uses: actions/checkout@v3
+
+      - name: ☕ Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🧪 Build project
+        run: mvn clean install -DskipTests
+
+      - name: 🚀 Run All Performance Tests
+        run: mvn exec:java -Dexec.mainClass="Performance.AllPerformanceTestsRunner"
+
+      - name: 💾 Upload performance results
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-results
+          path: target/performance-results/*.txt
